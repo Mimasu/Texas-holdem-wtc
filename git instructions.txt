@@ -1,0 +1,14 @@
+open up "Git GUI"
+open project from recent list (or browse to location)
+Remote->fetch from -> origin
+Merge-> Local Merge
+click merge on popup
+
+//Do work
+
+Rescan
+Stage Changed
+add message to Commit Message box
+commit
+push
+click push on popup
