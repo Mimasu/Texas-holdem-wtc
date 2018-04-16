@@ -32,7 +32,6 @@ public class Main {
                 System.out.println("now in the playerlist there are elements for " + (playernumber-1) + "players, continue code from here òwó");
                 System.out.println(playerlist); //this will print the list of players
                 System.out.println(intplayerlist);
-                //int avar = playerlist.get(0); //works here
             }
 
         }
@@ -44,8 +43,8 @@ public class Main {
         //classes:              whos' doing what?:                      What's in them:
         //player/deck52cards    ...                                     ...
         //card                  ...                                     suit(♣♦♥♠),cardnumber,
-        //main                  ...                                     ...
-        //:thinking:            ...                                     ...
+        //main                  Jamie                                    ...
+        //moneypit              Luke                                    where money goes when a player raises,bets,or goes all in.
     }
 
 
