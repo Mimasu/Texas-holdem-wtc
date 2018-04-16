@@ -29,7 +29,7 @@ public class Main {
                     playernumber = playernumber + 1;
                     fromzero = fromzero + 1;
                 }
-                System.out.println("now in the playerlist there are elements for " + (playernumber-1) + "players, continue code from here òwó");
+                System.out.println("now in the playerlist there are elements for " + (playernumber-1) + "players, continue code from here");
                 System.out.println(playerlist); //this will print the list of players
                 System.out.println(intplayerlist);
             }
