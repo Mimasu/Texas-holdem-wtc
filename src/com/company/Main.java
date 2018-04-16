@@ -3,26 +3,42 @@ import java.util.Scanner; //needed to input things
 import java.util.ArrayList; //needed for lists
 public class Main {
 
+
+    //currently this code creates two lists, one of integers based on the amount of players, and one with Players instead of integers
     public static void main(String[] args) {
         Scanner scannername = new Scanner (System.in);
         System.out.println("how many players are playing 2-10?");
+        String retry = ("yes");
         while(retry.equals("yes")){
             int numberofPlayers = Integer.parseInt(scannername.nextLine());
+            retry = "no";
             if(numberofPlayers < 2 || numberofPlayers > 10){
                 System.out.println(" is an improper amount of players to play this game, please choose inbetween 2 and 10 players");
-            } 
+                retry = "yes";
+            }
+            if (retry.equals("no")){
+                int fromzero = 0;
+                int playernumber = 1;
+                ArrayList<Player> playerlist = new ArrayList<Player>();
+                ArrayList<Integer> intplayerlist = new ArrayList<Integer>();
+                while(fromzero < numberofPlayers){
+                    playerlist.add(new Player(playernumber)); //i'm pretty sure I want to have each player be of the player class but it might work to have two list of players one for player class and one for main class to change the deciding factors for game things like the blinds and stuff
+                    intplayerlist.add(playernumber); //the second list for main to get numbers that target other numbers or something...
+
+                    System.out.println("added player#" + playernumber + " to the list");
+                    playernumber = playernumber + 1;
+                    fromzero = fromzero + 1;
+                }
+                System.out.println("now in the playerlist there are elements for " + (playernumber-1) + "players, continue code from here òwó");
+                System.out.println(playerlist); //this will print the list of players
+                System.out.println(intplayerlist);
+                //int avar = playerlist.get(0); //works here
+            }
+
         }
 
-        int fromzero = 0;
-        int playernumber = 1;
-        ArrayList<Integer> playerlist = new ArrayList<Integer>();
-        while(fromzero < numberofPlayers){
-            playerlist.add(playernumber);
-            System.out.println("added player#" + playernumber + " to the list");
-            playernumber = playernumber + 1;
-            fromzero = fromzero + 1;
-        }
-        System.out.println("if the code got to here this is good!");
+
+
 
 	// it's time to start coming up with some classes for this project
         //classes:              whos' doing what?:                      What's in them:

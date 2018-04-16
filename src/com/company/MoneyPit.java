@@ -6,6 +6,6 @@ import java.util.ArrayList; //needed for lists
  */
 public class MoneyPit {
     public MoneyPit(){
-
+//money pit won't need to be a class
     }
 }
