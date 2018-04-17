@@ -7,6 +7,7 @@ public class Main {
     //currently this code creates two lists, one of integers based on the amount of players, and one with Players instead of integers
     public static void main(String[] args) {
         Scanner scannername = new Scanner (System.in);
+        Deck gameDeck = new Deck();  //game deck is the object that will be modified in the cases of dealing and creating the community cards
         System.out.println("how many players are playing 2-10?");
         String retry = ("yes");
         while(retry.equals("yes")){
@@ -19,31 +20,47 @@ public class Main {
             if (retry.equals("no")){
                 int fromzero = 0;
                 int playernumber = 1;
-                ArrayList<Player> playerlist = new ArrayList<Player>();
-                ArrayList<Integer> intplayerlist = new ArrayList<Integer>();
+                ArrayList<Player> playerlist = new ArrayList<Player>(); //the element value represents the objects of the player class
+                ArrayList<Integer> intplayerlist = new ArrayList<Integer>();  //the element number represents the player player 1 is element 0
                 while(fromzero < numberofPlayers){
                     playerlist.add(new Player(playernumber)); //i'm pretty sure I want to have each player be of the player class but it might work to have two list of players one for player class and one for main class to change the deciding factors for game things like the blinds and stuff
                     intplayerlist.add(playernumber); //the second list for main to get numbers that target other numbers or something...
-
                     System.out.println("added player#" + playernumber + " to the list");
                     playernumber = playernumber + 1;
                     fromzero = fromzero + 1;
                 }
-                System.out.println("now in the playerlist there are elements for " + (playernumber-1) + "players, continue code from here");
+                System.out.println("now in the playerlist there are elements for " + (playernumber-1));
                 System.out.println(playerlist); //this will print the list of players
-                System.out.println(intplayerlist);
-            }
+                System.out.println(intplayerlist);// this will do the same but neither of these are necessary it's just for debugging purposes
+                System.out.println("which player should start with the dealer button?");
 
+                int isaDealer = (Integer.parseInt(scannername.nextLine())-1);
+                int b = -1;
+                int c = -2;
+                if(isaDealer<2){
+                    c = numberofPlayers - 2;
+                }
+                if(isaDealer<1){ //1 is the second player in element language
+                    b = numberofPlayers - 1;
+                }
+                intplayerlist.set(isaDealer,3); // 1 stands for small blind , 2 stands for big blind, 3 stands for the button. , 0 stands for other
+                intplayerlist.set((isaDealer + b),1);//sets the small blind to be 1
+                intplayerlist.set((isaDealer + c),2);//sets the big blind to be 2
+                System.out.println("the dealer button is in the position of player " + (isaDealer + 1) + " for this hand");
+                System.out.println("the small blind for this hand is player " + (isaDealer + b + 1));
+                System.out.println("the big blind for this hand is player " + (isaDealer + c + 1));
+                System.out.println(intplayerlist);// this will do the same but neither of these are necessary it's just for debugging purposes
+                System.out.println("players, continue code from here");
+            }
         }
 
 
-
-
 	// it's time to start coming up with some classes for this project
-        //classes:              whos' doing what?:                      What's in them:
-        //player/deck52cards    ...                                     ...
-        //card                  ...                                     suit(♣♦♥♠),cardnumber,
-        //main                  Jamie                                    ...
+        //classes:              whos' doing what?:                      What's in them:                                                     what we have:                                   what we need:
+        //player                Luke/Marisa                             input for human players and methods used in the AI stuff and properties                                             player properties: is dealer?,is smallblind?, is bigblind?, player hand list,
+        //deck52cards           Luke                                    the properties of the deck
+        //card                  Luke                                    suit(♣♦♥♠),cardnumber,
+        //main                  Jamie                                   game logic                                                          initialization of new players declaring the first dealer and the big blind and small blind
         //moneypit              Luke                                    where money goes when a player raises,bets,or goes all in.
     }
 
