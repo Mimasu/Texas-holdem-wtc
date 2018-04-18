@@ -85,7 +85,7 @@ public class Main {
     /*
     simplified process of game/code:
 
-    decide dealer > Big blind player set  > Small blind player set ✓
+    decide dealer > Big blind player set  > Small blind player set ✓+
     private cards to each player > Small blind player one > Big blind one last > until each player has 2 cards > deck size changed
     bidding round > Small blind player (raise/bet half/ hold/all in) > Big blind (raise/bet/hold/all in) > everyone folds/player puts in all their chips/player matches amount by all other active players > bidding stops
     something happens
