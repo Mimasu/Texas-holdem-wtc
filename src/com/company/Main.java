@@ -33,24 +33,41 @@ public class Main {
                 System.out.println(playerlist); //this will print the list of players
                 System.out.println(intplayerlist);// this will do the same but neither of these are necessary it's just for debugging purposes
                 System.out.println("which player should start with the dealer button?");
+                int gamestillgoing = 1;
+                int isaDealer = (Integer.parseInt(scannername.nextLine())-1); //at the end of the hand this value will be changed automatically this is the rotation of the player status
+                while(gamestillgoing == 1){
+                    int b = -1;
+                    int c = -2;
+                    if(isaDealer<2){
+                        c = numberofPlayers - 2;
+                    }
+                    if(isaDealer<1){ //1 is the second player in element language
+                        b = numberofPlayers - 1;
+                    }
+                    int everyoneneedstobezero = 1;
+                    int everybody = 0;
+                    while (everybody < numberofPlayers){
+                        intplayerlist.set(everybody,0);
+                        everybody = everybody + 1;
 
-                int isaDealer = (Integer.parseInt(scannername.nextLine())-1);
-                int b = -1;
-                int c = -2;
-                if(isaDealer<2){
-                    c = numberofPlayers - 2;
+                    }
+                    intplayerlist.set(isaDealer,3); // 1 stands for small blind , 2 stands for big blind, 3 stands for the button. , 0 stands for other
+                    intplayerlist.set((isaDealer + b),1);//sets the small blind to be 1
+                    intplayerlist.set((isaDealer + c),2);//sets the big blind to be 2
+                    System.out.println("the dealer button is in the position of player " + (isaDealer + 1) + " for this hand");
+                    System.out.println("the small blind for this hand is player " + (isaDealer + b + 1));
+                    System.out.println("the big blind for this hand is player " + (isaDealer + c + 1));
+                    System.out.println(intplayerlist);// this will do the same but neither of these are necessary it's just for debugging purposes
+                    System.out.println("players, continue code from here");
+                    //call to dealing method where : private cards to each player > Small blind player one > Big blind one last > until each player has 2 cards > deck size changed (this should require an automated process and should not be ai driven unless we want to add the possibility of the dealer having dealing errors)
+                    //enter bidding round
+                    //at the end of hand...
+                    isaDealer = isaDealer - 1; // moves the dealer button clockwise each hand ... don't let this become a negative!
+                    if(isaDealer < 1){
+                        isaDealer = numberofPlayers-1; //subtract 1 because elements do funny things
+                    }
+                    // let's just ignore this... System.out.println("the next player with the dealer button is player " + Math.sqrt(isaDealer) + 1); //because here values arn't being taken from the list the variable isaDealer can be modified to look like the player number
                 }
-                if(isaDealer<1){ //1 is the second player in element language
-                    b = numberofPlayers - 1;
-                }
-                intplayerlist.set(isaDealer,3); // 1 stands for small blind , 2 stands for big blind, 3 stands for the button. , 0 stands for other
-                intplayerlist.set((isaDealer + b),1);//sets the small blind to be 1
-                intplayerlist.set((isaDealer + c),2);//sets the big blind to be 2
-                System.out.println("the dealer button is in the position of player " + (isaDealer + 1) + " for this hand");
-                System.out.println("the small blind for this hand is player " + (isaDealer + b + 1));
-                System.out.println("the big blind for this hand is player " + (isaDealer + c + 1));
-                System.out.println(intplayerlist);// this will do the same but neither of these are necessary it's just for debugging purposes
-                System.out.println("players, continue code from here");
             }
         }
 
@@ -59,7 +76,7 @@ public class Main {
         //classes:              whos' doing what?:                      What's in them:                                                     what we have:                                   what we need:
         //player                Luke/Marisa                             input for human players and methods used in the AI stuff and properties                                             player properties: is dealer?,is smallblind?, is bigblind?, player hand list,
         //deck52cards           Luke                                    the properties of the deck
-        //card                  Luke                                    suit(♣♦♥♠),cardnumber,
+        //card                  Luke                                    suit(♣♦♥♠),card number,
         //main                  Jamie                                   game logic                                                          initialization of new players declaring the first dealer and the big blind and small blind
         //moneypit              Luke                                    where money goes when a player raises,bets,or goes all in.
     }
@@ -68,7 +85,7 @@ public class Main {
     /*
     simplified process of game/code:
 
-    decide dealer > Big blind player set  > Small blind player set
+    decide dealer > Big blind player set  > Small blind player set ✓
     private cards to each player > Small blind player one > Big blind one last > until each player has 2 cards > deck size changed
     bidding round > Small blind player (raise/bet half/ hold/all in) > Big blind (raise/bet/hold/all in) > everyone folds/player puts in all their chips/player matches amount by all other active players > bidding stops
     something happens
