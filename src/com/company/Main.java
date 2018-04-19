@@ -49,7 +49,6 @@ public class Main {
                     while (everybody < numberofPlayers){
                         intplayerlist.set(everybody,0);
                         everybody = everybody + 1;
-
                     }
                     intplayerlist.set(isaDealer,3); // 1 stands for small blind , 2 stands for big blind, 3 stands for the button. , 0 stands for other
                     intplayerlist.set((isaDealer + b),1);//sets the small blind to be 1
@@ -59,12 +58,30 @@ public class Main {
                     System.out.println("the big blind for this hand is player " + (isaDealer + c + 1));
                     System.out.println(intplayerlist);// this will do the same but neither of these are necessary it's just for debugging purposes
                     System.out.println("players, continue code from here");
-                    //call to dealing method where : private cards to each player > Small blind player one > Big blind one last > until each player has 2 cards > deck size changed (this should require an automated process and should not be ai driven unless we want to add the possibility of the dealer having dealing errors)
-                    //enter bidding round
-                    //at the end of hand...
                     isaDealer = isaDealer - 1; // moves the dealer button clockwise each hand ... don't let this become a negative!
                     if(isaDealer < 1){
                         isaDealer = numberofPlayers-1; //subtract 1 because elements do funny things
+                        System.out.println("Small blind player, choose your move" );
+                        String action = scannername.nextLine();
+                        if (action.equals("raise")){
+                            System.out.println("Player " + 1 + " raises");
+                            //call to raise method for player
+                        }
+                        else if (action.equals("bet")){
+                            System.out.println("Player " + 1 + " bets");
+                            //call to bet method for player
+                        }
+                        else if (action.equals("hold")){
+                            System.out.println("Player " + 1 + " holds");
+                            //call to hold method for player
+                        }
+                        else if (action.equals("all in")){
+                            System.out.println("Player " + 1 + " goes all in");
+                            //call to all in method for player
+                        }
+                        //call to dealing method where : private cards to each player > Small blind player one > Big blind one last > until each player has 2 cards > deck size changed (this should require an automated process and should not be ai driven unless we want to add the possibility of the dealer having dealing errors)
+                        //enter bidding round
+                        //at the end of hand..
                     }
                     // let's just ignore this... System.out.println("the next player with the dealer button is player " + Math.sqrt(isaDealer) + 1); //because here values arn't being taken from the list the variable isaDealer can be modified to look like the player number
                 }
