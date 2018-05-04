@@ -65,7 +65,7 @@ public class Main {
                         String action = scannername.nextLine();
                         if (action.equals("raise")){
                             System.out.println("Player " + 1 + " raises");
-                            //call to raise method for player
+                            //call to the raises method for player
                         }
                         else if (action.equals("bet")){
                             System.out.println("Player " + 1 + " bets");
