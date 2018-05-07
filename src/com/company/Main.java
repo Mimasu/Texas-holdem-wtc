@@ -65,18 +65,22 @@ public class Main {
                         String action = scannername.nextLine();
                         if (action.equals("raise")){
                             System.out.println("Player " + 1 + " raises");
+                            //
                             //call to the raises method for player
                         }
                         else if (action.equals("bet")){
                             System.out.println("Player " + 1 + " bets");
+                            //meaning giving money to the pit
                             //call to bet method for player
                         }
                         else if (action.equals("hold")){
                             System.out.println("Player " + 1 + " holds");
+                            //meaning that this player is not gonna bet and can not win the pot
                             //call to hold method for player
                         }
                         else if (action.equals("all in")){
                             System.out.println("Player " + 1 + " goes all in");
+                            //meaning that this player is putting all their chips in the pit
                             //call to all in method for player
                         }
                         //call to dealing method where : private cards to each player > Small blind player one > Big blind one last > until each player has 2 cards > deck size changed (this should require an automated process and should not be ai driven unless we want to add the possibility of the dealer having dealing errors)
