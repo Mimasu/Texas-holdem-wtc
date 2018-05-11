@@ -26,6 +26,7 @@ public class Main {
                     playerlist.add(new Player(playernumber)); //i'm pretty sure I want to have each player be of the player class but it might work to have two list of players one for player class and one for main class to change the deciding factors for game things like the blinds and stuff
                     intplayerlist.add(playernumber); //the second list for main to get numbers that target other numbers or something...
                     System.out.println("added player#" + playernumber + " to the list");
+                    (playerlist.get((fromzero))).PlayerID = playernumber; // declares the player ID for the player class
                     playernumber = playernumber + 1;
                     fromzero = fromzero + 1;
                 }
@@ -132,17 +133,44 @@ public class Main {
                                 timesthrough = 1;
                             }
                             handloop = "yes";
+                            //try an if statement in a loop in the other if statement MonkaS
+                            int timesthroughHasFolded = 0;
+                            int timesthroughPotMatch = 0;
+                            int timesthroughChipsLeft = 0;
+                            String continueCheck = "yes";
                             /*
-                                                        if (Player.hasplayerfolded.equals("yes")){ //check if all have folded
-                                areAllFolded = "yes";
-                            }
-                            if (Player.potmatch.equals("yes")){ //check if all have matched pot
+
+                             */
+
+                                while (timesthroughHasFolded > numberofPlayers){
+                                    if ((playerlist.get((timesthroughHasFolded))).hasplayerfolded.equals("yes")){ //check if all have folded
+                                        areAllFolded = "yes";
+                                    }
+                                    else if((playerlist.get((timesthroughHasFolded))).hasplayerfolded.equals("no")){
+                                        continueCheck = "no";
+                                        areAllFolded = "no";
+                                        timesthroughHasFolded = numberofPlayers; //sneaky hehe
+                                    }
+                                    timesthroughHasFolded = timesthroughHasFolded + 1; //it won't matter if it goes above number of players at this point
+                                }
+                                System.out.println("# number of times a player was checked " + timesthroughHasFolded); //problem: this while loop will not actually check
+
+
+
+
+
+
+
+                            /*
+                                                        if (Player.potmatch.equals("yes")){ //check if all have matched pot
                                 hasallmatchedpot = "yes";
                             }
                             if (Player.chipsLeft == 0){
                                 doPlayersStillHaveChips = "no";
                             }
                              */
+
+
 
                             if (areAllFolded.equals("yes") || hasallmatchedpot.equals("yes") || areAllFolded.equals("yes") || doPlayersStillHaveChips.equals("no") ){ //A round of betting continues until every player has folded, put in all of their chips, or matched the amount put in by all other active players.
                                 handloop = "no";

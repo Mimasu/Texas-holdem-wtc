@@ -14,8 +14,7 @@ public class Player extends Main{
     String playeractive;
     int chipsLeft;
     public Player(int playername){
-        PlayerID = 1;
-        //PlayerStat = intplayerlist(PlayerID); //this is supposed to grab the number from the list in the main class but it isn't
+        //PlayerStat = intplayerlist(PlayerID);
         hasplayerfolded = ("no");
         chipsLeft = 100;
         playeractive = "yes";
