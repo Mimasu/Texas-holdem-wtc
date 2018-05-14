@@ -16,7 +16,7 @@ public class Player extends Main{
     public Player(int playername){
         //PlayerStat = intplayerlist(PlayerID);
         hasplayerfolded = ("no");
-        chipsLeft = 100;
+        chipsLeft = 0;
         playeractive = "yes";
         potmatch = "no";
 

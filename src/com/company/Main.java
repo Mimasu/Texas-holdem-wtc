@@ -155,6 +155,32 @@ public class Main {
                                 }
                                 System.out.println("# number of times a player was checked " + timesthroughHasFolded); //problem: this while loop will not actually check
 
+                            while (timesthroughPotMatch > numberofPlayers){
+                                if ((playerlist.get((timesthroughPotMatch))).potmatch.equals("yes")){ //check if all have folded
+                                    hasallmatchedpot = "yes";
+                                }
+                                else if((playerlist.get((timesthroughPotMatch))).potmatch.equals("no")){
+                                    continueCheck = "no";
+                                    hasallmatchedpot = "no";
+                                    timesthroughPotMatch = numberofPlayers;
+                                }
+                                timesthroughHasFolded = timesthroughPotMatch + 1; //it won't matter if it goes above number of players at this point
+                            }
+                            System.out.println("# number of times a player was checked " + timesthroughPotMatch); //problem: this while loop will not actually check
+
+                            while (timesthroughChipsLeft > numberofPlayers){
+                                if ((playerlist.get((timesthroughChipsLeft))).chipsLeft < 1){ //check if all have folded
+                                    doPlayersStillHaveChips = "no";
+                                }
+                                else if((playerlist.get((timesthroughChipsLeft))).chipsLeft > 0){
+                                    continueCheck = "no";
+                                    doPlayersStillHaveChips = "yes";
+                                    timesthroughChipsLeft = numberofPlayers;
+                                }
+                                timesthroughHasFolded = timesthroughChipsLeft + 1; //it won't matter if it goes above number of players at this point
+                            }
+                            System.out.println("# number of times a player was checked " + timesthroughChipsLeft); //problem: this while loop will not actually check
+
 
 
 
