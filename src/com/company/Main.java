@@ -4,9 +4,9 @@ import java.util.ArrayList; //needed for lists
 public class Main {
 
 
-    //currently this code creates two lists, one of integers based on the amount of players, and one with Players instead of integers and is ready to call to the methods
     public static void main(String[] args) {
         Scanner scannername = new Scanner (System.in);
+        int moneypit;
         Deck gameDeck = new Deck();  //game deck is the object that will be modified in the cases of dealing and creating the community cards
         System.out.println("how many players are playing 2-10?");
         String retry = ("yes");
@@ -93,16 +93,12 @@ public class Main {
                             }
                             System.out.println(activePlayer + " is the active player...");
                             int visualactiveP = activePlayer +1;
-                            //if (visualactiveP > numberofPlayers){
-                           //     visualactiveP = 1;
-                            //}
                             System.out.println("Player " + (visualactiveP) + ", choose your move" );
                             String action = scannername.nextLine();
 
 
                             if (action.equals("raise")){
                                 System.out.println("Player " + visualactiveP + " raises");
-                                //
                                 //call to the raises method for player
 
                                 (playerlist.get((activePlayer))).raise();
@@ -111,21 +107,18 @@ public class Main {
                                 System.out.println("Player " + visualactiveP + " bets");
                                 //meaning giving money to the pit
                                 //call to bet method for player
-                                //Player.bet();
                                 (playerlist.get((activePlayer))).bet();
                             }
                             else if (action.equals("fold")){
                                 System.out.println("Player " + visualactiveP + " folds");
                                 //meaning that this player is not gonna bet and can not win the pot and will be skipped over during this hand
                                 //call to fold method for player
-                                //Player.fold();
                                 (playerlist.get((activePlayer))).fold();
                             }
                             else if (action.equals("all in")){
                                 System.out.println("Player " + visualactiveP + " goes all in");
                                 //meaning that this player is putting all their chips in the pit
                                 //call to all in method for player
-                                //Player.allin();
                                 (playerlist.get((activePlayer))).allin();
                             }
                             timesthrough = timesthrough + 1; //this is gonna be used to change the current player being called at
@@ -133,14 +126,10 @@ public class Main {
                                 timesthrough = 1;
                             }
                             handloop = "yes";
-                            //try an if statement in a loop in the other if statement MonkaS
                             int timesthroughHasFolded = 0;
                             int timesthroughPotMatch = 0;
                             int timesthroughChipsLeft = 0;
                             String continueCheck = "yes";
-                            /*
-
-                             */
 
                                 while (timesthroughHasFolded > numberofPlayers){
                                     if ((playerlist.get((timesthroughHasFolded))).hasplayerfolded.equals("yes")){ //check if all have folded
@@ -182,33 +171,12 @@ public class Main {
                             System.out.println("# number of times a player was checked " + timesthroughChipsLeft); //problem: this while loop will not actually check
 
 
-
-
-
-
-
-                            /*
-                                                        if (Player.potmatch.equals("yes")){ //check if all have matched pot
-                                hasallmatchedpot = "yes";
-                            }
-                            if (Player.chipsLeft == 0){
-                                doPlayersStillHaveChips = "no";
-                            }
-                             */
-
-
-
                             if (areAllFolded.equals("yes") || hasallmatchedpot.equals("yes") || areAllFolded.equals("yes") || doPlayersStillHaveChips.equals("no") ){ //A round of betting continues until every player has folded, put in all of their chips, or matched the amount put in by all other active players.
                                 handloop = "no";
                                 System.out.println("hand has ended");
                             }
                         }
-
-                        //call to dealing method where : private cards to each player > Small blind player one > Big blind one last > until each player has 2 cards > deck size changed (this should require an automated process and should not be ai driven unless we want to add the possibility of the dealer having dealing errors)
-                        //enter bidding round
-                        //at the end of hand..
                     }
-                    // let's just ignore this... System.out.println("the next player with the dealer button is player " + Math.sqrt(isaDealer) + 1); //because here values arn't being taken from the list the variable isaDealer can be modified to look like the player number
                 }
             }
         }
