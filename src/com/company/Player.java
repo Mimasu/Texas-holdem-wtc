@@ -4,7 +4,7 @@ import java.util.ArrayList; //needed for lists
 /**
  * Created by JIrvine on 4/12/2018.
  */
-public class Player extends Main{
+public class Player extends MoneyPit{
     Scanner scannername = new Scanner (System.in);
     int playername; //no longer used
     int PlayerID; // this would be used to identify the player's element value (these values will be declared as the Players are declared)
@@ -14,9 +14,9 @@ public class Player extends Main{
     String playeractive;
     int chipsLeft;
     public Player(int playername){
-        //PlayerStat = intplayerlist(PlayerID);
+        //PlayerStat = intplayerlist(PlayerID); //this part is required for defining what a player can actually do
         hasplayerfolded = ("no");
-        chipsLeft = 0;
+        chipsLeft = 100;
         playeractive = "yes";
         potmatch = "no";
 
@@ -27,11 +27,20 @@ public class Player extends Main{
     }
     public void raise(){
         System.out.println(playername);
-
+        int raise = Integer.parseInt(scannername.nextLine());
+        if(raise < pot){
+            System.out.println("you must raise above the pot");
+        }
     }
     public void bet(){
         System.out.println("how much?");
         int bet = Integer.parseInt(scannername.nextLine());
+        chipsLeft = chipsLeft - bet;
+        if(bet == pot){
+            potmatch = ("yes");
+        }else if (bet < pot || bet > pot){
+            potmatch = ("no");
+        }
 
     }
     public void fold(){

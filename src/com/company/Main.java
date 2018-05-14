@@ -3,10 +3,14 @@ import java.util.Scanner; //needed to input things
 import java.util.ArrayList; //needed for lists
 public class Main {
 
-
+/*
+at this point in the code the main part is finished meaning all that is left is dealing with the cards and how the AI will be processed
+the hand can end now, only to chips, it would work for matching pot but there is no pot yet
+ */
     public static void main(String[] args) {
         Scanner scannername = new Scanner (System.in);
         int moneypit;
+        MoneyPit Centerpot = new MoneyPit();
         Deck gameDeck = new Deck();  //game deck is the object that will be modified in the cases of dealing and creating the community cards
         System.out.println("how many players are playing 2-10?");
         String retry = ("yes");
@@ -86,7 +90,7 @@ public class Main {
                         /*
                         now I need to code a way to make the program skip players who are not active in the game so they don't interrupt the players that can play
                          */
-                            //Player.deal(); // the order shoulden't matter, as long as each player gets cards and these cards remain private until showdown
+                            //Player.deal(); // the order shoulden't matter, as long as each player gets cards and these cards remain private until showdown <-------------------------------------
                             activePlayer = (smallblind - 1 + timesthrough);
                             if (activePlayer > numberofPlayers - 1 ){// - 1 because if active player is equal to number of players than it will go out of bounds
                                 activePlayer = 0 + timesthrough - 1; // 0 so the order doesn't get messed up, this should start to happen after the last player in the list does their action
@@ -95,8 +99,6 @@ public class Main {
                             int visualactiveP = activePlayer +1;
                             System.out.println("Player " + (visualactiveP) + ", choose your move" );
                             String action = scannername.nextLine();
-
-
                             if (action.equals("raise")){
                                 System.out.println("Player " + visualactiveP + " raises");
                                 //call to the raises method for player
@@ -130,47 +132,40 @@ public class Main {
                             int timesthroughPotMatch = 0;
                             int timesthroughChipsLeft = 0;
                             String continueCheck = "yes";
-
-                                while (timesthroughHasFolded > numberofPlayers){
+                                while (timesthroughHasFolded < numberofPlayers){
                                     if ((playerlist.get((timesthroughHasFolded))).hasplayerfolded.equals("yes")){ //check if all have folded
                                         areAllFolded = "yes";
                                     }
                                     else if((playerlist.get((timesthroughHasFolded))).hasplayerfolded.equals("no")){
-                                        continueCheck = "no";
                                         areAllFolded = "no";
                                         timesthroughHasFolded = numberofPlayers; //sneaky hehe
                                     }
                                     timesthroughHasFolded = timesthroughHasFolded + 1; //it won't matter if it goes above number of players at this point
                                 }
                                 System.out.println("# number of times a player was checked " + timesthroughHasFolded); //problem: this while loop will not actually check
-
-                            while (timesthroughPotMatch > numberofPlayers){
+                            while (timesthroughPotMatch < numberofPlayers){
                                 if ((playerlist.get((timesthroughPotMatch))).potmatch.equals("yes")){ //check if all have folded
                                     hasallmatchedpot = "yes";
                                 }
                                 else if((playerlist.get((timesthroughPotMatch))).potmatch.equals("no")){
-                                    continueCheck = "no";
                                     hasallmatchedpot = "no";
                                     timesthroughPotMatch = numberofPlayers;
                                 }
-                                timesthroughHasFolded = timesthroughPotMatch + 1; //it won't matter if it goes above number of players at this point
+                                timesthroughPotMatch = timesthroughPotMatch + 1; //it won't matter if it goes above number of players at this point
                             }
                             System.out.println("# number of times a player was checked " + timesthroughPotMatch); //problem: this while loop will not actually check
 
-                            while (timesthroughChipsLeft > numberofPlayers){
+                            while (timesthroughChipsLeft < numberofPlayers){
                                 if ((playerlist.get((timesthroughChipsLeft))).chipsLeft < 1){ //check if all have folded
                                     doPlayersStillHaveChips = "no";
                                 }
                                 else if((playerlist.get((timesthroughChipsLeft))).chipsLeft > 0){
-                                    continueCheck = "no";
                                     doPlayersStillHaveChips = "yes";
                                     timesthroughChipsLeft = numberofPlayers;
                                 }
-                                timesthroughHasFolded = timesthroughChipsLeft + 1; //it won't matter if it goes above number of players at this point
+                                timesthroughChipsLeft = timesthroughChipsLeft + 1; //it won't matter if it goes above number of players at this point
                             }
                             System.out.println("# number of times a player was checked " + timesthroughChipsLeft); //problem: this while loop will not actually check
-
-
                             if (areAllFolded.equals("yes") || hasallmatchedpot.equals("yes") || areAllFolded.equals("yes") || doPlayersStillHaveChips.equals("no") ){ //A round of betting continues until every player has folded, put in all of their chips, or matched the amount put in by all other active players.
                                 handloop = "no";
                                 System.out.println("hand has ended");
